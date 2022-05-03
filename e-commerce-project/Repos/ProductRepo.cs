@@ -1,0 +1,51 @@
+﻿using System.Collections.Generic;
+using e_commerce_project.Models;
+using System.Linq;
+namespace e_commerce_project.Repos
+{
+    public class ProductRepo : IProductRepo
+    {
+        context db;
+        public ProductRepo(context db)
+        {
+            this.db = db;
+        }
+
+        public List<Product> GetAll()
+        {
+            return db.Products.ToList();
+        }
+
+        public Product FindById(int id)
+        {
+            return db.Products.FirstOrDefault(x => x.Id == id);
+        }
+        public int Insert(Product product)
+        {
+            db.Products.Add(product);
+            int raw = db.SaveChanges();
+            return raw;
+        }
+        public int Edit(int id, Product product)
+        {
+            Product prdct = FindById(id);
+            if (prdct != null)
+            {
+                prdct.img = product.img;
+                prdct.Name = product.Name;
+                prdct.Price = product.Price;
+                prdct.Description = product.Description;
+                prdct.CategoryId = product.CategoryId;
+                int raw = db.SaveChanges();
+                return raw;
+            }
+            return 0;
+        }
+        public int Delete(int id)
+        {
+            Product prdct = FindById(id);
+            db.Products.Remove(prdct);
+            return db.SaveChanges();
+        }
+    }
+}
