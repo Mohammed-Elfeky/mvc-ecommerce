@@ -11,12 +11,19 @@ namespace e_commerce_project.Controllers
         {
             this.productRepo = productRepo;
         }
-
-
+        
         public IActionResult Products()
         {
             List<Product> products=productRepo.GetAll();
             return View(products);
         }
+
+        public IActionResult getProductById(int id)
+        {
+            Product product=productRepo.FindById(id);
+            return View(product);
+        }
+
+
     }
 }

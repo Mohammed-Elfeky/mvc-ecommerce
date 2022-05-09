@@ -1,88 +1,29 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using e_commerce_project.Repos;
+using System.Collections.Generic;
 using e_commerce_project.Models;
-using e_commerce_project.viewModels.Products;
-using System.IO;
-using Microsoft.AspNetCore.Hosting;
-using System;
-
 namespace e_commerce_project.Controllers
 {
-    public class productController : Controller
+    public class ShowProductController : Controller
     {
-        private readonly IProductRepo product;
-        private readonly ICategoryRepo category;
-        IWebHostEnvironment WebHostEnvironment;
-
-        public productController(IProductRepo product, ICategoryRepo category, IWebHostEnvironment WebHostEnvironment)
+        IProductRepo productRepo;
+        public ShowProductController(IProductRepo productRepo)
         {
-            this.product = product;
-            this.category = category;
-            this.WebHostEnvironment = WebHostEnvironment;
+            this.productRepo = productRepo;
         }
-
-        public IActionResult Index()
-        {
-            var allproduct = product.GetproductandCategory();
-            return View(allproduct);
-        }
-        public IActionResult Delete(int id)
-        {
-            this.product.Delete(id);
-            return RedirectToAction("Index");
-        }
-        public IActionResult New()
-        {
-            ViewBag.AllCategories = this.category.GetAll();
-            return View();
-        }
-
-        public IActionResult SaveNew(AddProductVM pro)
-        {
-            if (ModelState.IsValid == false)
-            {
-                ViewBag.AllCategories = this.category.GetAll();
-                return View("New", pro);
-            }
-
-            #region store image on server
-            string productsImages = Path.Combine(WebHostEnvironment.WebRootPath, "productImages");
-            string UniqueimgName = Guid.NewGuid().ToString() + "_" + pro.img.FileName;
-            string imgPath = Path.Combine(productsImages, UniqueimgName);
-            using (var fileStream = new FileStream(imgPath, FileMode.Create))
-            {
-                pro.img.CopyTo(fileStream);
-                fileStream.Close();
-            }
-            #endregion
-            this.product.Insert(new Product() { Name = pro.Name, img = UniqueimgName, Price = pro.Price, Description = pro.Description, CategoryId = pro.CategoryId });
-            return RedirectToAction("Index");
-        }
-    
         
-        public IActionResult Edit(int id)
+        public IActionResult Products()
         {
-            var oldProduct = this.product.FindById(id);
-            if (oldProduct != null)
-            {
-                ViewBag.AllCategories = this.category.GetAll();
-                return View("Edit",oldProduct);
-            }
-            else
-            {
-                return RedirectToAction("Index");
-            }
+            List<Product> products=productRepo.GetAll();
+            return View(products);
         }
-        [HttpPost]
-        [AutoValidateAntiforgeryToken]
-        public IActionResult SaveEdit(Product product)
+
+        public IActionResult getProductById(int id)
         {
-            if (ModelState.IsValid == false)
-            {
-                return View("Edit", product);
-            }
-            this.product.Edit(product.Id, product);
-            return RedirectToAction("Index");
+            Product product=productRepo.FindById(id);
+            return View(product);
         }
+
+
     }
 }
