@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\Desktop\\mvc-ecommerce\\e-commerce-project\\e-commerce-project.csproj": {}
+    "F:\\iti courses\\mvc\\Day2\\lab\\mvc-ecommerce\\e-commerce-project\\e-commerce-project.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\Desktop\\mvc-ecommerce\\e-commerce-project\\e-commerce-project.csproj": {
+    "F:\\iti courses\\mvc\\Day2\\lab\\mvc-ecommerce\\e-commerce-project\\e-commerce-project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\Desktop\\mvc-ecommerce\\e-commerce-project\\e-commerce-project.csproj",
+        "projectUniqueName": "F:\\iti courses\\mvc\\Day2\\lab\\mvc-ecommerce\\e-commerce-project\\e-commerce-project.csproj",
         "projectName": "e-commerce-project",
-        "projectPath": "C:\\Users\\user\\Desktop\\mvc-ecommerce\\e-commerce-project\\e-commerce-project.csproj",
-        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\Desktop\\mvc-ecommerce\\e-commerce-project\\obj\\",
+        "projectPath": "F:\\iti courses\\mvc\\Day2\\lab\\mvc-ecommerce\\e-commerce-project\\e-commerce-project.csproj",
+        "packagesPath": "C:\\Users\\Mohamed\\.nuget\\packages\\",
+        "outputPath": "F:\\iti courses\\mvc\\Day2\\lab\\mvc-ecommerce\\e-commerce-project\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Mohamed\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

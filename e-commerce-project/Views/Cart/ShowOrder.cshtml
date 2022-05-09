@@ -1,0 +1,148 @@
+﻿
+@{
+    Layout = "_Layout";
+}
+
+
+
+<div id="main">
+    <div class="spinner-grow" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+@section MyScript
+{
+    <script>
+        showOrders();
+        function showOrders(){
+          $.ajax({
+                  url:"/Cart/GetUserOrder/",
+                  success: function(res){
+                      //if there is unsubmitted order for that user
+                      //display it 
+                      //if not
+                      //show the user the message
+                      if(res.orderExist){
+                          drawTable(res.order[0].order.id);
+                          fillTable(res);
+                          updateCartCount(res.orderCount)
+                      }else{
+                          $("#main").html("<h1>"+res.msg+"</h1>")
+                      }
+                    },
+                    error:function(request, status, error){
+                        console.log("sasds")
+                    }
+          });
+        }
+        function drawTable(orderId){
+                          $("#main").html(`
+                            <div class="container-fluid pt-5">
+                                    <div class="row px-xl-5">
+                                        <div class="col-lg-8 table-responsive mb-5">
+                                            <table class="table table-bordered text-center mb-0">
+                                                <thead class="bg-secondary text-dark">
+                                                    <tr>
+                                                        <th>Products</th>
+                                                        <th>Price</th>
+                                                        <th>Quantity</th>
+                                                        <th>Total</th>
+                                                        <th>Remove</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="align-middle">
+                       
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-lg-4">
+                                                <div class="card-footer border-secondary bg-transparent">
+                                                    <div class="d-flex justify-content-between mt-2">
+                                                        <h5 class="font-weight-bold">Total</h5>
+                                                        <h5 class="font-weight-bold">$160</h5>
+                                                    </div>
+                                                    <button onclick=whenSubmit(${orderId}) class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
+                                                    <button onclick=whenClear(${orderId}) class="btn btn-block btn-danger my-3 py-3"> Clear </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                          `);
+        }
+        function fillTable(res){
+                      res.order.forEach(({product:{name,id,price},quantity,orderId})=>{
+                              $("tbody").append(`
+                        <tr>
+                            <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"> ${name} </td>
+                            <td class="align-middle">${price}</td>
+                            <td class="align-middle">
+                                <div class="input-group quantity mx-auto" style="width: 100px;">
+                                    <div class="input-group-btn">
+                                        <button onclick="whenRemove(${orderId},${id})" class="btn btn-sm btn-primary btn-minus" >
+                                        <i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value=${quantity}>
+                                    <div class="input-group-btn">
+                                        <button onclick="whenAdd(${id})" class="btn btn-sm btn-primary btn-plus">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
+                        </tr>
+                              `)
+                          })
+        }
+        function whenAdd(productId){
+                $.ajax({
+                  url:"/Cart/Add/"+productId,
+                  success: function(result){
+                      showOrders()
+                    },
+                  error: function (request, status, error) {}
+                });
+        }
+        function whenSubmit(orderId){
+             $.ajax({
+                  url:`/Cart/Submit/${orderId}`,
+                  success: function(res){
+                      showOrders()
+                      updateCartCount("")
+                  }
+                 });
+        }
+        function whenClear(orderId){
+                $.ajax({
+                  url:`/Cart/Clear/${orderId}`,
+                  success: function(result){  
+                      showOrders()
+                      updateCartCount("")
+                  }
+                });
+        }
+        function whenRemove(orderId,productId){
+              $.ajax({
+                  url:`/Cart/remove/${orderId}?productId=${productId}`,
+                  success: function(res){
+                      showOrders()
+                      if(res.cleared){
+                          updateCartCount("")
+                      }else{
+                          updateCartCount(res.count)
+                      }
+                  }
+                 });
+        }
+
+        function updateCartCount(count){
+            localStorage.setItem("count",count)
+            document.dispatchEvent(new CustomEvent("countChange"))
+        }
+
+    </script>
+}
+
