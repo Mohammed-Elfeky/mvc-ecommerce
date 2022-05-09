@@ -10,5 +10,6 @@ namespace e_commerce_project.Repos
         Product FindById(int id);
         List<Product> GetAll();
         int Insert(Product product);
+        List<Product> GetproductandCategory();
     }
 }

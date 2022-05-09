@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using e_commerce_project.Models;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
+
 namespace e_commerce_project.Repos
 {
     public class ProductRepo : IProductRepo
@@ -15,7 +17,10 @@ namespace e_commerce_project.Repos
         {
             return db.Products.ToList();
         }
-
+        public List<Product> GetproductandCategory()
+        {
+            return db.Products.Include(N => N.Category).ToList();
+        }
         public Product FindById(int id)
         {
             return db.Products.FirstOrDefault(x => x.Id == id);
