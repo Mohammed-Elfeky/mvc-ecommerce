@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace e_commerce_project.Models
 {
@@ -17,5 +18,6 @@ namespace e_commerce_project.Models
         [ForeignKey("Category")]
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
+        //public virtual List<OrderProduct> orderProducts { get; set; }
     }
 }

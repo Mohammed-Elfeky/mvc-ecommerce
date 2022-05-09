@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System;
+using System.Collections.Generic;
+
 namespace e_commerce_project.Models
 {
     public class Order
@@ -21,6 +23,6 @@ namespace e_commerce_project.Models
         [ForeignKey("User")]
         public string user_id { get; set; }
         public virtual appUser User { get; set; }
-
+        //public virtual List<OrderProduct> orderProducts { get; set; }
     }
 }

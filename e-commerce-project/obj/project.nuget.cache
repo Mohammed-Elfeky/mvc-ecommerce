@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1QUlq1/X6K2uFJPMuuz6IGXahgmVQ7lUFO7lUjtGYT8yFt4+7F4h9ENGGyXGOv/a0VGvR/ohtnT288nhD6qCeA==",
+  "dgSpecHash": "6Ppgp8VsF5zGwTiv1G3alqPvzD3AcUxE57KWLAZUn5UR4QD/xLvymoK1etPuWROWi7RV6Dlyv2uVfKymZDY4dQ==",
   "success": true,
-  "projectFilePath": "F:\\iti courses\\e-commerce-project\\e-commerce-project\\e-commerce-project.csproj",
+  "projectFilePath": "F:\\iti courses\\mvc\\Day2\\lab\\mvc-ecommerce\\e-commerce-project\\e-commerce-project.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Mohamed\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Mohamed\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.16\\microsoft.aspnetcore.cryptography.internal.5.0.16.nupkg.sha512",

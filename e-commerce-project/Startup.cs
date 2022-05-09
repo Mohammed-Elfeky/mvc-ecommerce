@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using e_commerce_project.Models;
 using Microsoft.EntityFrameworkCore;
 using e_commerce_project.Repos;
+using Microsoft.AspNetCore.Identity;
 namespace e_commerce_project
 {
     public class Startup
@@ -29,9 +30,13 @@ namespace e_commerce_project
                 options.UseSqlServer(Configuration.GetConnectionString("cs"));
             });
 
+            services.AddIdentity<appUser, IdentityRole>()
+            .AddEntityFrameworkStores<context>();
 
             services.AddScoped<ICategoryRepo, CategoryRepo>();
             services.AddScoped<IProductRepo, ProductRepo>();
+            services.AddScoped<IOrderRepo, OrderRepo>();
+            services.AddScoped<IorderProductRepo, orderProductRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

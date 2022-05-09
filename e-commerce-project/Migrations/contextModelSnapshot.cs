@@ -383,13 +383,13 @@ namespace e_commerce_project.Migrations
             modelBuilder.Entity("e_commerce_project.Models.OrderProduct", b =>
                 {
                     b.HasOne("e_commerce_project.Models.Order", "Order")
-                        .WithMany()
+                        .WithMany("orderProducts")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("e_commerce_project.Models.Product", "Product")
-                        .WithMany()
+                        .WithMany("orderProducts")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -413,6 +413,16 @@ namespace e_commerce_project.Migrations
             modelBuilder.Entity("e_commerce_project.Models.Category", b =>
                 {
                     b.Navigation("products");
+                });
+
+            modelBuilder.Entity("e_commerce_project.Models.Order", b =>
+                {
+                    b.Navigation("orderProducts");
+                });
+
+            modelBuilder.Entity("e_commerce_project.Models.Product", b =>
+                {
+                    b.Navigation("orderProducts");
                 });
 
             modelBuilder.Entity("e_commerce_project.Models.appUser", b =>

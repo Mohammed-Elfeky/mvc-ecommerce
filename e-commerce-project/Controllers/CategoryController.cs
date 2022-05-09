@@ -19,17 +19,7 @@ namespace e_commerce_project.Controllers
             WebHostEnvironment=_WebHostEnvironment;
         }
 
-        public IActionResult isUnique(string Name)
-        {
-            bool doesCatNameExistBefore = cat.FindByName(Name);
 
-            if (doesCatNameExistBefore==true)
-            {
-                return Json(false);
-            }
-            else
-                return Json(true);
-        }
 
         public IActionResult Index()
         {
