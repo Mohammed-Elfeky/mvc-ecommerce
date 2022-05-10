@@ -21,6 +21,10 @@ namespace e_commerce_project.Repos
         {
             return db.Products.Include(N => N.Category).ToList();
         }
+        public List<Product> searchByName(string name)
+        {
+            return db.Products.Where(p=>p.Name.Contains(name)).ToList();
+        }
         public Product FindById(int id)
         {
             return db.Products.FirstOrDefault(x => x.Id == id);

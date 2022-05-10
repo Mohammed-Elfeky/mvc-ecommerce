@@ -38,13 +38,14 @@
             </div>
             <div class="col-lg-6 col-6 text-left">
                 <form action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
+                    <div class="input-group" id="search">
+                        <input oninput="whenInput(event)" type="text" class="form-control" placeholder="Search for products">
                         <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
                             </span>
                         </div>
+                        <div class="search-result"></div>
                     </div>
                 </form>
             </div>
@@ -145,4 +146,62 @@
         function whenSignOut(){
             localStorage.removeItem("count")
         }
+
+       function whenInput({target:{value}}){
+            $.ajax({
+                  url:`/ShowProduct/search?name=${value}`,
+                  success: function(res){
+                      drawData(res)
+                    },
+                    error:function(request, status, error){
+                        console.log("sasds")
+                    }
+          });
+       }
+
+       function drawData(data){
+           $(".search-result").html("")
+           data.forEach(({img,name,id})=>{
+               $(".search-result").append(`
+                     <a href="/ShowProduct/getProductById/${id}">
+                        <div class="product-item" style="display:flex;">
+                            <img width="50px" src="/productImages/${img}" alt="">
+                            <div>${name}</div>
+                        </div>
+                     </a>
+               `)
+           })
+       }
     </script>
+
+
+
+        <style>
+            #search{
+                position:relative;
+            }
+            .search-result{
+                position: absolute;
+                width: 100%;
+                top: 100%;
+                left: 0;
+                z-index: 10;
+                max-height: 408px;
+                overflow: auto;
+                background-color:white;
+                box-shadow:0px 3px 8px -2px rgba(0,0,0,0.63);
+            }
+
+           .product-item{
+                display: flex;
+                padding: 13px;
+                align-items: center;
+                border-bottom: 1px solid #d1d0d063;
+            }
+            .product-item img{
+                margin-right: 11px;
+            }
+            .search-result a{
+                text-decoration:none;
+            }
+        </style>
