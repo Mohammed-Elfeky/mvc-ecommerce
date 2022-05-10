@@ -108,7 +108,7 @@ namespace e_commerce_project.Controllers
                             Include(op => op.Product).
                             Where(op => op.OrderId == theUnSubmittedOrder.Id).
                             ToList();
-                return Json(new { orderExist = true, order = order, orderCount = order.Count() });
+                return Json(new { orderExist = true, order = order});
             }
             return Json(new { orderExist = false,msg="no orders to show"});
         }

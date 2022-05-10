@@ -19,14 +19,11 @@
           $.ajax({
                   url:"/Cart/GetUserOrder/",
                   success: function(res){
-                      //if there is unsubmitted order for that user
-                      //display it 
-                      //if not
-                      //show the user the message
                       if(res.orderExist){
                           drawTable(res.order[0].order.id);
                           fillTable(res);
-                          updateCartCount(res.orderCount)
+                          updateCartCount(res.order.length)
+                          renderTotal(res)
                       }else{
                           $("#main").html("<h1>"+res.msg+"</h1>")
                       }
@@ -48,19 +45,16 @@
                                                         <th>Price</th>
                                                         <th>Quantity</th>
                                                         <th>Total</th>
-                                                        <th>Remove</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody class="align-middle">
-                       
-                                                </tbody>
+                                                <tbody class="align-middle"></tbody>
                                             </table>
                                         </div>
                                         <div class="col-lg-4">
                                                 <div class="card-footer border-secondary bg-transparent">
                                                     <div class="d-flex justify-content-between mt-2">
                                                         <h5 class="font-weight-bold">Total</h5>
-                                                        <h5 class="font-weight-bold">$160</h5>
+                                                        <h5 id="total" class="font-weight-bold">$160</h5>
                                                     </div>
                                                     <button onclick=whenSubmit(${orderId}) class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
                                                     <button onclick=whenClear(${orderId}) class="btn btn-block btn-danger my-3 py-3"> Clear </button>
@@ -72,11 +66,12 @@
                           `);
         }
         function fillTable(res){
-                      res.order.forEach(({product:{name,id,price},quantity,orderId})=>{
+                      res.order.forEach(({product:{name,id,price,img},quantity,orderId})=>{
                               $("tbody").append(`
                         <tr>
-                            <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"> ${name} </td>
+                            <td class="align-middle">${name}</td>
                             <td class="align-middle">${price}</td>
+                            <td class="align-middle">${quantity*price}</td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
@@ -92,7 +87,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
+                            
                         </tr>
                               `)
                           })
@@ -142,7 +137,9 @@
             localStorage.setItem("count",count)
             document.dispatchEvent(new CustomEvent("countChange"))
         }
-
+        function renderTotal({order}){
+            $("#total").text("$ "+order.reduce((total,Val)=>total+(Val.quantity*Val.product.price), 0))
+        }
     </script>
 }
 
