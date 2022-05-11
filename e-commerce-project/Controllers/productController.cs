@@ -25,5 +25,11 @@ namespace e_commerce_project.Controllers
         }
 
 
+        public IActionResult search(string name)
+        {
+            List<Product> products = productRepo.searchByName(name);
+            return Json(products);
+        }
+
     }
 }

@@ -19,10 +19,13 @@ namespace e_commerce_project.Models
         public Boolean submitted { get; set; }
 
         public Boolean deliverd { get; set; }
+
         
         [ForeignKey("User")]
         public string user_id { get; set; }
+
         public virtual appUser User { get; set; }
+
         //public virtual List<OrderProduct> orderProducts { get; set; }
     }
 }
