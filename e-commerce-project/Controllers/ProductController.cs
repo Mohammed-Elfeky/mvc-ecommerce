@@ -30,6 +30,10 @@ namespace e_commerce_project.Controllers
             List<Product> products = productRepo.searchByName(name);
             return Json(products);
         }
-
+        public IActionResult getProductsBYcategoryId(int id)
+        {
+            List<Product> products = productRepo.getProductsBYcategoryId(id);
+            return View("Products",products);
+        }
     }
 }

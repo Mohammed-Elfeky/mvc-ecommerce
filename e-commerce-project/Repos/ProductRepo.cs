@@ -56,5 +56,11 @@ namespace e_commerce_project.Repos
             db.Products.Remove(prdct);
             return db.SaveChanges();
         }
+
+
+        public List<Product> getProductsBYcategoryId(int catId)
+        {
+            return db.Products.Where(p=>p.CategoryId==catId).ToList();
+        }
     }
 }
