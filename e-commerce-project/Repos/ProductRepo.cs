@@ -62,5 +62,11 @@ namespace e_commerce_project.Repos
         {
             return db.Products.Where(p=>p.CategoryId==catId).ToList();
         }
+
+
+        public List<Product> getProductsBYPrice(decimal price)
+        {
+            return db.Products.Where(p=>p.Price<=price).ToList();
+        }
     }
 }

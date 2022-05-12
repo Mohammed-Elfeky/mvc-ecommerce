@@ -35,5 +35,8 @@ namespace e_commerce_project.Controllers
             List<OrderProduct> products = iorderProductRepo.getOrderProducts(id).ToList();
             return View(products);
         }
+
+
+
     }
 }

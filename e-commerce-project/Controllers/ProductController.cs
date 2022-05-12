@@ -35,5 +35,11 @@ namespace e_commerce_project.Controllers
             List<Product> products = productRepo.getProductsBYcategoryId(id);
             return View("Products",products);
         }
+
+        public IActionResult filterByPrice(decimal price)
+        {
+            return Json(productRepo.getProductsBYPrice(price));
+        }
+
     }
 }

@@ -13,5 +13,6 @@ namespace e_commerce_project.Repos
         List<Product> GetproductandCategory();
         List<Product> searchByName(string name);
         List<Product> getProductsBYcategoryId(int catId);
+        List<Product> getProductsBYPrice(decimal price);
     }
 }
