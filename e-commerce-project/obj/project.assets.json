@@ -7404,19 +7404,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Mohamed\\.nuget\\packages\\": {}
+    "C:\\Users\\Sara khalaf\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\iti courses\\mvc\\Day2\\lab\\mvc-ecommerce\\e-commerce-project\\e-commerce-project.csproj",
+      "projectUniqueName": "F:\\New folder (3)\\mvc-ecommerce\\e-commerce-project\\e-commerce-project.csproj",
       "projectName": "e-commerce-project",
-      "projectPath": "F:\\iti courses\\mvc\\Day2\\lab\\mvc-ecommerce\\e-commerce-project\\e-commerce-project.csproj",
-      "packagesPath": "C:\\Users\\Mohamed\\.nuget\\packages\\",
-      "outputPath": "F:\\iti courses\\mvc\\Day2\\lab\\mvc-ecommerce\\e-commerce-project\\obj\\",
+      "projectPath": "F:\\New folder (3)\\mvc-ecommerce\\e-commerce-project\\e-commerce-project.csproj",
+      "packagesPath": "C:\\Users\\Sara khalaf\\.nuget\\packages\\",
+      "outputPath": "F:\\New folder (3)\\mvc-ecommerce\\e-commerce-project\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Mohamed\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Sara khalaf\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7475,6 +7475,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[5.0.16, 5.0.16]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -7483,7 +7489,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.104\\RuntimeIdentifierGraph.json"
       }
     }
   }
